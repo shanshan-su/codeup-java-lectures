@@ -50,7 +50,20 @@ public class ConsoleIOLecture {
         System.out.println("What is your first name?");
         String userFirstName = sc.next();
 
-        System.out.printf("Nice to meet you, %s", userFirstName);
+        System.out.printf("Nice to meet you, %s\n", userFirstName);
+
+        System.out.println("How old are you?");
+        int age = sc.nextInt();
+
+        System.out.printf("Good to hear that you are %d years old.\n", age);
+
+        // Quirk of using next() then nextLine()...
+
+        sc.nextLine();
+        System.out.println("Favorite Quote:");
+
+        String favoriteQuote = sc.nextLine();
+        System.out.printf("Funny, \"%s\" is my favorite quote too.\n", favoriteQuote);
 
     }
 }

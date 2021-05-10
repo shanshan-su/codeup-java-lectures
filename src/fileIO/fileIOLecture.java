@@ -12,10 +12,15 @@ import java.util.List;
 public class fileIOLecture {
     public static void printPoem(Path filePath) throws IOException { // Write out a try/catch block fpr the OPException would be the more robust path vs. throwing it here. Throwing it here, we're kicking the can down the road!
         System.out.println();
-        List<String> fileContents = Files.readAllLines(filePath);
-        for (int i = 0; i < fileContents.size(); i++) {
-            System.out.printf("%d: %s\n", i + 1, fileContents.get(i));
+        try {
+            List<String> fileContents = Files.readAllLines(filePath);
+            for (int i = 0; i < fileContents.size(); i++) {
+                System.out.printf("%d: %s\n", i + 1, fileContents.get(i));
+            }
+        } catch (IOException e) {
+            System.out.println("Cannot find the file according to the given path.");
         }
+
     }
 
 
@@ -31,7 +36,8 @@ public class fileIOLecture {
         System.out.println("Files.exists(filePathToPoem) = " + Files.exists(filePathToPoem)); // true
         System.out.println("Files.exists(sameDirectoryPath) = " + Files.exists(sameDirectoryPath)); // false. The path in java is more strict than it is in javaScript
 
-//        printPoem(filePathToPoem);
+        printPoem(filePathToPoem);
+        System.out.println();
 
         // Alright! So, we've built a Path - we used the Path with Files.exist - now though, how do we get into the creation of new files/directories?
         String directory = "./src/fileIO/data"; // relative path to where we want our directory to go
